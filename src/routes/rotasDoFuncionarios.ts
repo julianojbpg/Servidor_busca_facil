@@ -4,7 +4,7 @@ import { IReqRes } from '../@types'
 const rotas= Router()
 
 rotas.get('/f',({req, res}:IReqRes)=>{
-    res.send('get do funcionario')
+    res.send('testando a conexao')
 })
 
 

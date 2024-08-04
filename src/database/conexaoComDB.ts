@@ -3,7 +3,7 @@ import { database, usuario, senha, localhost } from "../config"
 
 
 
-export default class ConexaoComDB {
+export default class ConexaoDB {
     
     private database: string
     private usuario: string
@@ -17,7 +17,7 @@ export default class ConexaoComDB {
         this.localhost = localhost
     }
 
-    async Conexao(){
+    async Conexao():Promise<Sequelize>{
         const sequelize =  new Sequelize(this.database, this.usuario, this.senha, {
             host: this.localhost,
             dialect: 'mysql'
@@ -29,5 +29,21 @@ export default class ConexaoComDB {
             } catch (error) {
                 console.error('Não foi possível conectar ao banco de dados: ', error)
             }
+            return sequelize
     }
 }
+
+// export function Conexao(){
+//     const sequelize =  new Sequelize(database, usuario, senha, {
+//         host: localhost,
+//         dialect: 'mysql'
+//         }
+//         )
+//         // try {
+//         //     await sequelize.authenticate()
+//         //     console.log('A conexão com o banco de dados foi estabelecida com sucesso')
+//         // } catch (error) {
+//         //     console.error('Não foi possível conectar ao banco de dados: ', error)
+//         // }
+//         return sequelize
+// }
