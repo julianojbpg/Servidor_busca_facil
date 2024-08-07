@@ -1,12 +1,19 @@
 import { Router } from 'express'
-import { CadastroUsuario, Teste, TodosUsuarios, pesquisarUsuario } from '../controllers/controleUsuario'
+import { 
+    cadastroUsuario, 
+    Teste, 
+    TodosUsuarios, 
+    atualizarUsuario, 
+    pesquisarUsuario 
+} from '../controllers/controleUsuario'
 
 const rotasUser= Router()
 
-rotasUser.post('/cadastroUsuario',CadastroUsuario)
+rotasUser.post('/cadastroUsuario',cadastroUsuario)
 rotasUser.get('/todosUsuarios',TodosUsuarios)
 rotasUser.post('/pesquisaUsuario',pesquisarUsuario)
-rotasUser.get('/teste',Teste)
+rotasUser.post('/atualizarUsuario',atualizarUsuario)
+rotasUser.post('/teste',Teste)
 
 
 export default rotasUser

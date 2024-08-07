@@ -21,6 +21,8 @@ export interface IValidacao{
 export interface IValidacaoUsuario{
     validarUsuario(usuario: IUsuario):Promise<string[] | []>
     validarPesquisaUsuario(email:string):Promise<IUsuario | null>
+    validarAtualizacaoUsuario(usuario: IUsuario):Promise<boolean>
+    validarDeletarUsuario(id: number):Promise<boolean>
 }
 
 export interface IRepositorioUsuario{
@@ -28,5 +30,11 @@ export interface IRepositorioUsuario{
     pesquisarEmail(email: string):Promise<boolean>
     pesquisarTodosUsuarios():Promise<IUsuario[]>
     pesquisarUsuario(email: string):Promise<IUsuario | null>
+    atualizarUsuario(usuario:IUsuario):Promise<number>
+    deletarUsuario(id:number):Promise<number>
+}
+
+export interface IControllerUsuario{
+    
 }
 

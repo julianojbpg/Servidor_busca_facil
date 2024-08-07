@@ -1,5 +1,5 @@
 import { IUsuario, IValidacao, IValidacaoUsuario } from "../@types/Interfaces"
-import RepositorioUsuario from "../database/repositorio/RepositorioUsuario"
+import RepositorioUsuario from "../repositorio/RepositorioUsuario"
 
 
 
@@ -71,5 +71,17 @@ export class ValidacaoUsuario implements IValidacaoUsuario {
                 return result
         }
         return null
+    }
+    public async validarAtualizacaoUsuario(usuario: IUsuario):Promise<boolean>{
+        const result = await new RepositorioUsuario().atualizarUsuario(usuario)
+        if(result === 0 )
+            return false
+        return true
+    }
+    public async validarDeletarUsuario(id: number):Promise<boolean>{
+        const result = await new RepositorioUsuario().deletarUsuario(id)
+        if(result === 0 )
+            return false
+        return true
     }
 }

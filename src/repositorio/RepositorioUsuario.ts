@@ -1,5 +1,7 @@
-import { IRepositorioUsuario, IUsuario } from "../../@types/Interfaces"
-import { usuarios } from "../models/tabelaUsuarios"
+
+import { IRepositorioUsuario, IUsuario } from "../@types/Interfaces"
+import { usuarios } from "../database/models/tabelaUsuarios"
+
 
 export default class RepositorioUsuario implements IRepositorioUsuario{
     constructor() {}
@@ -24,5 +26,25 @@ export default class RepositorioUsuario implements IRepositorioUsuario{
             return null
         return result
     }
+    public async atualizarUsuario(usuario:IUsuario):Promise<number> {
 
+        const {id, nome,senha,telefone} = usuario
+        const result:[affectedCount: number] = await usuarios.update({
+            nome:nome,
+            telefone:telefone,
+            senha:senha,
+        },{where:{id}})
+
+        if(result[0] === 0)
+            return 0
+        return 1
+    }
+    public async deletarUsuario(id: number): Promise<number> {
+
+        const result = await usuarios.destroy({where:{id}})
+
+        if(result === 0)
+            return 0
+        return 1
+    }
 }
