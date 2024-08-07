@@ -66,13 +66,10 @@ export class ValidacaoUsuario implements IValidacaoUsuario {
     }
     public async validarPesquisaUsuario(email:string):Promise<IUsuario | null>{
         const {status, msg} = this.validarEmail(email)
-        console.log(email, msg)
         if(status){
             const result = await new RepositorioUsuario().pesquisarUsuario(email)
-                console.log('chegou aqui')
                 return result
         }
-        console.log('chegou aqui no erro')
         return null
     }
 }

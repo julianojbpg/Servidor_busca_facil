@@ -8,19 +8,16 @@ export default class RepositorioUsuario implements IRepositorioUsuario{
             await usuarios.create(usuario)
 
     }
-
     public async pesquisarEmail(email: string):Promise<boolean>{
         const result = await usuarios.findOne({where:{ email}})
         if(result === null)
             return true
         return false
     }
-
     public async pesquisarTodosUsuarios():Promise<IUsuario[]> {
         const result:IUsuario[] = await usuarios.findAll()
         return result
     }
-
     public async pesquisarUsuario(email: string):Promise<IUsuario | null>{
         const result = await usuarios.findOne({where:{ email}})
         if(result === null)
