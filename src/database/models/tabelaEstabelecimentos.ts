@@ -1,47 +1,11 @@
-import { DataTypes, Model, Sequelize } from "sequelize"
-import ConexaoDB from "../conexaoComDB"
-import { usuario } from "../../config"
+import { DataTypes } from "sequelize"
+import { db } from "../instanciaDoBanco"
+import { usuarios } from "./tabelaUsuarios"
 
 
-// export default class Usuario extends Model{
-
-//   static async initModel(){
-//       const db = await new ConexaoDB().Conexao()
-//       Usuario.init({
-//         id:{
-//           type: DataTypes.NUMBER,
-//           primaryKey: true,
-//           autoIncrement: true,
-//         },
-//         nome:{
-//           type: DataTypes.STRING,
-//           allowNull: true
-//         },
-//         email:{
-//           type: DataTypes.STRING
-//         },
-//         senha:{
-//           type: DataTypes.STRING
-//         }
-//       },
-//       {
-//         sequelize: db,
-//         modelName: 'usuario'
-//       }
-//       )
-//   }
-// }
-
-// Usuario.initModel().catch((error)=>{
-//   console.error("Erro ao inicializar o modelo Usuario: ", error)
-// })
-
-
-export default async function tabelaEstabelecimentos(db: Sequelize) {
-  
-  const estabelecimentos = db.define('estabelecimentos',{
+export const estabelecimentos = db.define('estabelecimentos',{
     id:{
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
@@ -50,12 +14,17 @@ export default async function tabelaEstabelecimentos(db: Sequelize) {
       allowNull: true
     },
     cep:{
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       allowNull: true
     },
     usuarioId:{
-      type: DataTypes.NUMBER,
-      allowNull: true
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true,
+      references: {
+          model: usuarios,
+          key: 'id'
+      }
     },
     urlLogo:{
       type: DataTypes.STRING,
@@ -73,6 +42,3 @@ export default async function tabelaEstabelecimentos(db: Sequelize) {
   {
      timestamps: false,
   })
-
-  return estabelecimentos
-}

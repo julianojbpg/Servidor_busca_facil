@@ -1,62 +1,35 @@
-import { DataTypes, Model, Sequelize } from "sequelize"
-import ConexaoDB from "../conexaoComDB"
-import { usuario } from "../../config"
+import { DataTypes } from "sequelize"
+import { db } from "../instanciaDoBanco"
+import { funcionarios } from "./tabelaFuncionarios"
+import { servicos } from "./tabelaServicos"
 
 
-// export default class Usuario extends Model{
-
-//   static async initModel(){
-//       const db = await new ConexaoDB().Conexao()
-//       Usuario.init({
-//         id:{
-//           type: DataTypes.NUMBER,
-//           primaryKey: true,
-//           autoIncrement: true,
-//         },
-//         nome:{
-//           type: DataTypes.STRING,
-//           allowNull: true
-//         },
-//         email:{
-//           type: DataTypes.STRING
-//         },
-//         senha:{
-//           type: DataTypes.STRING
-//         }
-//       },
-//       {
-//         sequelize: db,
-//         modelName: 'usuario'
-//       }
-//       )
-//   }
-// }
-
-// Usuario.initModel().catch((error)=>{
-//   console.error("Erro ao inicializar o modelo Usuario: ", error)
-// })
-
-
-export default async function tabelaFuncionariosServicos(db: Sequelize) {
-  
-  const funcionariosServicos = db.define('funcionariosServicos',{
+export const funcionariosServicos = db.define('funcionariosservicos',{
     id:{
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
     funcionarioId:{
-      type: DataTypes.NUMBER,
-      allowNull: true
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true,
+      references: {
+          model: funcionarios,
+          key: 'id'
+      }
     },
     servicoId:{
-      type: DataTypes.NUMBER,
-      allowNull: true
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true,
+      references: {
+          model: servicos,
+          key: 'id'
+      }
     }
   },
   {
+    tableName: 'funcionariosservicos',
      timestamps: false,
   })
-
-  return funcionariosServicos
-}

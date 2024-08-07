@@ -1,46 +1,17 @@
-import { DataTypes, Model, Sequelize } from "sequelize"
-import ConexaoDB from "../conexaoComDB"
+import { DataTypes, InferAttributes, InferCreationAttributes, Model } from "sequelize"
+import { db } from "../instanciaDoBanco"
 
+class UsuarioModel extends Model<InferAttributes<UsuarioModel>, InferCreationAttributes<UsuarioModel>>{
+  id!:number
+  nome!:string
+  email!:string
+  telefone!:string
+  senha!:string
+}
 
-// export default class Usuario extends Model{
-
-//   static async initModel(){
-//       const db = await new ConexaoDB().Conexao()
-//       Usuario.init({
-//         id:{
-//           type: DataTypes.NUMBER,
-//           primaryKey: true,
-//           autoIncrement: true,
-//         },
-//         nome:{
-//           type: DataTypes.STRING,
-//           allowNull: true
-//         },
-//         email:{
-//           type: DataTypes.STRING
-//         },
-//         senha:{
-//           type: DataTypes.STRING
-//         }
-//       },
-//       {
-//         sequelize: db,
-//         modelName: 'usuario'
-//       }
-//       )
-//   }
-// }
-
-// Usuario.initModel().catch((error)=>{
-//   console.error("Erro ao inicializar o modelo Usuario: ", error)
-// })
-
-
-export default async function tabelaUsuarios(db: Sequelize) {
-  
-  const usuarios = db.define('usuarios',{
+export const usuarios = db.define<UsuarioModel>('usuarios',{
     id:{
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
@@ -64,8 +35,6 @@ export default async function tabelaUsuarios(db: Sequelize) {
   },
   {
      timestamps: false,
-    
-  })
+    }
+)
 
-  return usuarios
-}

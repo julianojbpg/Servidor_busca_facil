@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { IReqRes } from '../@types'
+import { IReqRes } from '../@types/Interfaces'
 
 const rotas= Router()
 

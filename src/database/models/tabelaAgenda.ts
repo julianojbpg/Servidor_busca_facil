@@ -1,61 +1,41 @@
-import { DataTypes, Model, Sequelize } from "sequelize"
-import ConexaoDB from "../conexaoComDB"
-import { usuario } from "../../config"
+import { DataTypes } from "sequelize"
+import { db } from "../instanciaDoBanco"
+import { funcionarios } from "./tabelaFuncionarios"
+import { usuarios } from "./tabelaUsuarios"
+import { servicos } from "./tabelaServicos"
 
-
-// export default class Usuario extends Model{
-
-//   static async initModel(){
-//       const db = await new ConexaoDB().Conexao()
-//       Usuario.init({
-//         id:{
-//           type: DataTypes.NUMBER,
-//           primaryKey: true,
-//           autoIncrement: true,
-//         },
-//         nome:{
-//           type: DataTypes.STRING,
-//           allowNull: true
-//         },
-//         email:{
-//           type: DataTypes.STRING
-//         },
-//         senha:{
-//           type: DataTypes.STRING
-//         }
-//       },
-//       {
-//         sequelize: db,
-//         modelName: 'usuario'
-//       }
-//       )
-//   }
-// }
-
-// Usuario.initModel().catch((error)=>{
-//   console.error("Erro ao inicializar o modelo Usuario: ", error)
-// })
-
-
-export default async function tabelaAgenda(db: Sequelize) {
-  
-  const agenda = db.define('agenda',{
+export const agenda =  db.define('agenda',{
     id:{
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
     },
     funcionarioId:{
-      type: DataTypes.NUMBER,
-      allowNull: true
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true,
+      references: {
+          model: funcionarios,
+          key: 'id'
+      }
     },
     usuarioId:{
-      type: DataTypes.NUMBER,
-      allowNull: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true,
+      references: {
+          model: usuarios,
+          key: 'id'
+      }
     },
     servicoId:{
-      type: DataTypes.NUMBER,
-      allowNull: true
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      unique: true,
+      references: {
+          model: servicos,
+          key: 'id'
+      }
     },
     pagamento:{
       type: DataTypes.STRING,
@@ -70,6 +50,3 @@ export default async function tabelaAgenda(db: Sequelize) {
      timestamps: false,
     
   })
-
-  return agenda
-}

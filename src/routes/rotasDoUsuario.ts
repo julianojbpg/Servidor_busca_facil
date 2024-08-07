@@ -1,11 +1,12 @@
 import { Router } from 'express'
-import { IReqRes } from '../@types'
+import { CadastroUsuario, Teste, TodosUsuarios, pesquisarUsuario } from '../controllers/controleUsuario'
 
 const rotasUser= Router()
 
-rotasUser.get('/u',({req, res}:IReqRes)=>{
-    res.send('Get do usuario')
-})
+rotasUser.post('/cadastroUsuario',CadastroUsuario)
+rotasUser.get('/todosUsuarios',TodosUsuarios)
+rotasUser.post('/pesquisaUsuario',pesquisarUsuario)
+rotasUser.get('/teste',Teste)
 
 
 export default rotasUser
