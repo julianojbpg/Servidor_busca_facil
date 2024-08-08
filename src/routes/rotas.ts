@@ -1,8 +1,8 @@
-import rotaUser from './rotasDoUsuario'
-import rotaFun from './rotasDoFuncionarios'
+import rotasUser from './rotasDoUsuario' 
+import rotasCat from './rotasDaCategoria'
 import { app } from '../servidor'
 
 export default function Rotas(){
-    app.use(rotaFun)
-    app.use(rotaUser)
+    app.use(rotasUser)
+    app.use(rotasCat)
 }

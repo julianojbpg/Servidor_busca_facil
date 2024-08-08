@@ -15,7 +15,6 @@ export async function cadastroUsuario (req: Request, res:Response):Promise<Respo
         return res.status(400).json({ mgs: 'Erro ao cadastrar o usuario', error })
     }
 }
-
 export async function TodosUsuarios(req: Request, res:Response):Promise<Response> {  
     try {
     const result = await new RepositorioUsuario().pesquisarTodosUsuarios()
@@ -24,7 +23,6 @@ export async function TodosUsuarios(req: Request, res:Response):Promise<Response
         return res.status(400).json({mgs: 'eror no teste: ', error})
     }
 }
-
 export async function pesquisarUsuario(req: Request, res:Response):Promise<Response> {
     try {
     const result = await new ValidacaoUsuario().validarPesquisaUsuario(req.body.email)
@@ -33,7 +31,6 @@ export async function pesquisarUsuario(req: Request, res:Response):Promise<Respo
         return res.status(400).json({mgs: 'erro ao procurar email: ', error})
     }
 }
-
 export async function atualizarUsuario(req: Request, res:Response):Promise<Response> {  
     try {
     const result = await new ValidacaoUsuario().validarAtualizacaoUsuario(req.body)
@@ -43,8 +40,7 @@ export async function atualizarUsuario(req: Request, res:Response):Promise<Respo
         return res.status(400).json({mgs: 'Erro ao tentar atualizar o usuario: ', error})
     }
 }
-
-export async function Teste(req: Request, res:Response):Promise<Response> {  
+export async function deletarUsuario(req: Request, res:Response):Promise<Response> {  
     try {
     const result = await new ValidacaoUsuario().validarDeletarUsuario(req.body.id)
         return result ? res.status(200).json({mgs: 'Usuario deletado com sucesso'}) : res.status(400).json({mgs: 'erro ao deletar o usuario '})

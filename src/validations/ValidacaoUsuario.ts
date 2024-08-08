@@ -1,4 +1,5 @@
-import { IUsuario, IValidacao, IValidacaoUsuario } from "../@types/Interfaces"
+import { IUsuario, IValidacao } from "../@types/interfaceObjetos"
+import { IValidacaoUsuario } from "../@types/interfaceValidacoes"
 import RepositorioUsuario from "../repositorio/RepositorioUsuario"
 
 
@@ -37,7 +38,7 @@ export class ValidacaoUsuario implements IValidacaoUsuario {
             return { status: false, msg: 'O telefone precisa ter exatamente 11 carateres' }
     }
     public async validarUsuario(usuario: IUsuario):Promise<string[] | []> {
-        console.log('esse é o usuario: ', usuario)
+        
         let erro:string[] = []
 
             const campos = this.validarCampos(usuario)

@@ -1,5 +1,5 @@
-
-import { IRepositorioUsuario, IUsuario } from "../@types/Interfaces"
+import { IUsuario } from "../@types/interfaceObjetos"
+import { IRepositorioUsuario } from "../@types/interfaceRepositorios"
 import { usuarios } from "../database/models/tabelaUsuarios"
 
 
