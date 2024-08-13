@@ -9,11 +9,11 @@ import {
 
 const rotasCat= Router()
 
-rotasCat.post('/cadastrarCategoria',cadastroCategoria)
-rotasCat.get('/todasCategorias',TodasCategorias)
-rotasCat.post('/pesquisarCategoria',pesquisarCategoria)
-rotasCat.post('/atualizarCategoria',atualizarCategoria)
-rotasCat.post('/deletarCategoria',deletarCategoria)
+rotasCat.post('/categoriaC',cadastroCategoria)
+rotasCat.get('/categorias',TodasCategorias)
+rotasCat.post('/categoriaP',pesquisarCategoria)
+rotasCat.put('/categoria',atualizarCategoria)
+rotasCat.delete('/categoria',deletarCategoria)
 
 
 export default rotasCat

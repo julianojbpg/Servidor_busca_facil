@@ -8,7 +8,6 @@ export default class RepositorioUsuario implements IRepositorioUsuario{
 
     public async cadastrar(usuario: IUsuario):Promise<void>{
             await usuarios.create(usuario)
-
     }
     public async pesquisarEmail(email: string):Promise<boolean>{
         const result = await usuarios.findOne({where:{ email}})

@@ -12,7 +12,7 @@ export const servicos = db.define('servicos',{
       allowNull: true
     },
     preco:{
-      type: DataTypes.DECIMAL,
+      type: DataTypes.FLOAT,
       allowNull: true,
       unique: true
     },

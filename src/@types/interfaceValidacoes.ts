@@ -1,4 +1,4 @@
-import { ICategoria, IUsuario } from "./interfaceObjetos"
+import { ICategoria, IServico, IUsuario } from "./interfaceObjetos"
 
 //  Validaçoes 
 export interface IValidacaoUsuario{
@@ -12,4 +12,10 @@ export interface IValidacaoCategoria{
     validarPesquisaCategoria(nome:string):Promise<ICategoria | null>
     validarAtualizacaoCategoria(categoria: ICategoria):Promise<boolean>
     validarDeletarCategoria(id: number):Promise<boolean>
+}
+export interface IValidacaoServico{
+    validarServico(servico: IServico):string[] | []
+    validarPesquisaServico(nome:string):Promise<IServico | null>
+    validarAtualizacaoServico(servico: IServico):Promise<boolean>
+    validarDeletarServico(id: number):Promise<boolean>
 }

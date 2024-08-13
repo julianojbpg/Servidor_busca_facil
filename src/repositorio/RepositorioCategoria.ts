@@ -8,7 +8,6 @@ export default class RepositorioCategoria  implements IRepositorioCategoria {
     constructor() {}
 
     public async cadastrar(nome:string):Promise<void>{
-            console.log('chegou aqui')
             await categorias.create({nome})
 
     }

@@ -10,9 +10,9 @@ export async function cadastroCategoria (req: Request, res:Response):Promise<Res
         return res.status(400).json(result);
     try {
         await new RepositorioCategoria().cadastrar(req.body.nome);
-        return res.status(200).json({ mgs: 'Categoria cadastrada com sucesso' })
+        return res.status(200).json({ mensagem: 'Categoria cadastrada com sucesso' })
     } catch (error) {
-        return res.status(400).json({ mgs: 'Erro ao cadastrar a categoria', error })
+        return res.status(400).json({ mensagem: 'Erro ao cadastrar a categoria', error })
     }
 }
 export async function TodasCategorias(req: Request, res:Response):Promise<Response> {  
@@ -20,7 +20,7 @@ export async function TodasCategorias(req: Request, res:Response):Promise<Respon
     const result = await new RepositorioCategoria().pesquisarTodasCategorias()
         return res.status(200).json(result)
     } catch (error) {
-        return res.status(400).json({mgs: 'erro ao buscar  todas as categorias: ', error})
+        return res.status(400).json({mensagem: 'erro ao buscar  todas as categorias: ', error})
     }
 }
 export async function pesquisarCategoria(req: Request, res:Response):Promise<Response> {
@@ -28,24 +28,24 @@ export async function pesquisarCategoria(req: Request, res:Response):Promise<Res
     const result = await new ValidacaoCategoria().validarPesquisaCategoria(req.body.nome)
         return res.status(200).json(result)
     } catch (error) {
-        return res.status(400).json({mgs: 'erro ao procurar email: ', error})
+        return res.status(400).json({mensagem: 'erro ao procurar email: ', error})
     }
 }
 export async function atualizarCategoria(req: Request, res:Response):Promise<Response> {  
     try {
     const result = await new ValidacaoCategoria().validarAtualizacaoCategoria(req.body)
-        return result ? res.status(200).json({mgs: 'Categoria atualizada com sucesso'}) : res.status(400).json({mgs: 'erro ao atualizar a categoria '})
+        return result ? res.status(200).json({mensagem: 'Categoria atualizada com sucesso'}) : res.status(400).json({mensagem: 'erro ao atualizar a categoria '})
         
     } catch (error) {
-        return res.status(400).json({mgs: 'Erro ao tentar atualizar a categoria: ', error})
+        return res.status(400).json({mensagem: 'Erro ao tentar atualizar a categoria: ', error})
     }
 }
 export async function deletarCategoria(req: Request, res:Response):Promise<Response> {  
     try {
     const result = await new ValidacaoCategoria().validarDeletarCategoria(req.body.id)
-        return result ? res.status(200).json({mgs: 'Categoria deletada com sucesso'}) : res.status(400).json({mgs: 'erro ao deletar a categoria '})
+        return result ? res.status(200).json({mensagem: 'Categoria deletada com sucesso'}) : res.status(400).json({mensagem: 'erro ao deletar a categoria '})
         
     } catch (error) {
-        return res.status(400).json({mgs: 'Erro ao tentar deletar a categoria: ', error})
+        return res.status(400).json({mensagem: 'Erro ao tentar deletar a categoria: ', error})
     }
 }

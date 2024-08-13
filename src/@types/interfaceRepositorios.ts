@@ -1,4 +1,4 @@
-import { ICategoria, IUsuario } from "./interfaceObjetos"
+import { ICategoria, IServico, IUsuario } from "./interfaceObjetos"
 
 // Repositorios
 export interface IRepositorioUsuario{
@@ -15,4 +15,11 @@ export interface IRepositorioCategoria{
     pesquisarCategoria(nome: string):Promise<ICategoria | null>
     atualizarCategoria(categoria:ICategoria):Promise<number>
     deletarCategoria(id:number):Promise<number>
+}
+export interface IRepositorioServico{
+    cadastrar(servico: IServico):Promise<void>
+    pesquisarTodosServicos():Promise<IServico[]>
+    pesquisarServico(nome: string):Promise<IServico | null>
+    atualizarServico(usuario:IServico):Promise<number>
+    deletarServico(id:number):Promise<number>
 }
